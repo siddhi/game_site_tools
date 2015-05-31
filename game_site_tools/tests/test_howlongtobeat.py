@@ -280,3 +280,12 @@ class HowLongToBeatTest(unittest.TestCase):
         self.assertEqual(2, self.h.api.get_page.call_count)
         self.h.api.get_page.assert_has_calls([mock.call("Gabriel Knight 2"),
                                               mock.call("Gabriel Knight II")])
+
+    def test_roman_should_return_same_name_if_it_has_no_number(self):
+        """
+        Some games do not exist in the database, eg: Age of Enigma. Such games
+        will fail, but will not have a number in the name. In such cases, we
+        should not attempt again with a roman conversion
+        """
+        self.h.api.get_page.return_value = no_hits_response
+        self.assertEqual(0, self.h.find("Age of Enigma"))

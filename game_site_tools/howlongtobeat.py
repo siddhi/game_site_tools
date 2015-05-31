@@ -41,6 +41,9 @@ class HowLongToBeat:
     api = SiteApi()
     parser = GamePageParser()
 
+    def _has_number_in_name(self, name):
+        return re.findall("\d+", name) != []
+
     def _convert_to_roman(self, name):
         roman_list = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X"]
         number = int(re.findall("\d+", name)[0])
@@ -56,7 +59,7 @@ class HowLongToBeat:
 
     def find(self, game_name):
         time = self._find_game(game_name)
-        if not time:
+        if not time and self._has_number_in_name(game_name):
             # Games in a series sometimes have number stored in roman
             # eg: Kings Quest 2 -> Kings Quest II
             new_name = self._convert_to_roman(game_name)
