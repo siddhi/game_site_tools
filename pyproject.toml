@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "game_site_tools"
+version = "0.1.0"
+description = "Check the game backlog on Backlogerry and then calculate how much time it will take to complete all of them using howlongtobeat"
+authors = ["Siddharta Govindaraj <siddharta@silverstripesoftware.in>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+requests = "^2.26"
+beautifulsoup4 = "^4.10"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
