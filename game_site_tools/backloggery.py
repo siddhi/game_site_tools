@@ -3,7 +3,6 @@ from enum import Enum
 import requests
 from bs4 import BeautifulSoup
 
-
 class GameStatus(Enum):
     unplayed = "(u)"
     unfinished = "(U)"
@@ -12,10 +11,9 @@ class GameStatus(Enum):
     mastered = "(M)"
     null = "(-)"
 
-
 class GamePageParser:
     def parse_page(self, page_text):
-        soup = BeautifulSoup(page_text)
+        soup = BeautifulSoup(page_text, features="html.parser")
         games = []
         for game_tag in soup.find_all("section", class_="gamebox"):
             if game_tag.h2:
